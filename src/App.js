@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+// import ReactGA from 'react-ga';
 
-function App() {
+
+
+const App = () => {
+///////////////////////////////////
+
+  // useEffect(() => {
+  //   ReactGA.initialize('G-TJH4P6RKNH');
+  //   ReactGA.pageview(window.location.pathname + window.location.search);
+  // }, []);
+
+///////////////////////////////////
+
+
+
+  useEffect(() => {
+    const handleMessage = (event) => {
+      if (event.data === 'buttonClicked') {
+        console.log('Button Clicked');
+        ///////////////////////////////////////////
+        // window.dataLayer = window.dataLayer || [];
+        // window.dataLayer.push({
+        //   'event': 'buttonClick',
+        //   'eventCategory': 'Form Interaction',
+        //   'eventAction': 'Submit',
+        //   'eventLabel': 'MyForm'
+        // });
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Parent Component - Coming from React App</h1>
+      <iframe src="https://sajinibala.github.io/test-site/" title="Iframe" />
     </div>
   );
-}
+};
 
 export default App;
+
+
+
